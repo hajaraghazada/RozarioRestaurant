@@ -15,6 +15,7 @@ namespace Entities.DataTransferObjects
         public string ImageURL { get; set; }
         public UserDto Author { get; set; }
         public string Description { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         public List<CommentDto> Comments { get; set; }
     }

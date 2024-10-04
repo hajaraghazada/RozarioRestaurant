@@ -16,5 +16,6 @@ namespace Core.DataRepositories.Abstract
         T GetById(int id);                  
         List<T> GetAll();
         List<T> GetAll(Expression<Func<T, bool>> predicate);
+        
     }
 }

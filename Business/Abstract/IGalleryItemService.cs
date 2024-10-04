@@ -10,6 +10,9 @@ namespace Business.Abstract
 {
     public interface IGalleryItemService
     {
+        void AddGalleryItem(GalleryItem galleryItem);
+        void DeleteGalleryItem(int id);
+        string? GetGalleryItemById(int id);
         List <GalleryItemDto> GetGalleryItems ();
     }
 }

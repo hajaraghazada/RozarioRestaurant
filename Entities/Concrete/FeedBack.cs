@@ -14,6 +14,6 @@ namespace Entities.Concrete
         public int Rating { get; set; }
         public string Speciality { get; set; }
         public string ImageUrl { get; set; }
-
+      
     }
 }

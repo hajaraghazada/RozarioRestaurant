@@ -10,6 +10,10 @@ namespace Business.Abstract
 {
     public interface ITagService
     {
+        void AddTag(Tag tag);
+        void DeleteTag(int id);
         List<TagDto> GetAllTags();
+        string? GetTagById(int id);
+        void UpdateTag(Tag tag);
     }
 }

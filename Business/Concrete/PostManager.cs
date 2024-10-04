@@ -18,6 +18,23 @@ namespace Business.Concrete
         {
             _unitOfWork = unitOfWork;
         }
+
+        public void AddPost(Post post)
+        {
+            _unitOfWork.GetRepository<Post>().Add(post);
+            _unitOfWork.SaveChanges();
+        }
+
+        public void DeletePost(int id)
+        {
+            var post = _unitOfWork.GetRepository<Post>().GetById(id);
+            if (post != null)
+            {
+                _unitOfWork.GetRepository<Post>().Delete(post);
+                _unitOfWork.SaveChanges();
+            }
+        }
+
         public List<PostDto> GetAllPost()
         {
             IBaseRepository<Post> postRepository = _unitOfWork.GetRepository<Post>();
@@ -28,11 +45,7 @@ namespace Business.Concrete
                 Title = p.Title,
                 ImageURL = p.ImageURL,
                 PublishDate = p.PublishDate,
-                Author = new UserDto {ID=p.AuthorID}
-
-
-
-
+                Author = new UserDto { ID = p.AuthorID }
             }).ToList();
         }
 
@@ -41,28 +54,32 @@ namespace Business.Concrete
             var post = GetAllPost().FirstOrDefault(p => p.ID == id);
             IBaseRepository<User> userRepository = _unitOfWork.GetRepository<User>();
             IBaseRepository<Comment> commentRepository = _unitOfWork.GetRepository<Comment>();
-            var comments = commentRepository.GetAll(p=> p.PostID==id);
+            var comments = commentRepository.GetAll(p => p.PostID == id);
             var user = userRepository.GetById(post.Author.ID);
             post.Author = new UserDto
             {
-                Bio=user.Bio,
-                Name=user.Name,
-                ID=post.ID,
-                ImageUrl=post.ImageURL
+                Bio = user.Bio,
+                Name = user.Name,
+                ID = post.ID,
+                ImageUrl = post.ImageURL
             };
             post.Comments = comments.Select(p => new CommentDto
-            { Name=p.Name,
-            ID = p.ID,
-            Text=p.Text,
-            CreatedAt=p.CreatedAt
-
+            {
+                Name = p.Name,
+                ID = p.ID,
+                Text = p.Text,
+                CreatedAt = p.CreatedAt
             }).ToList();
 
             return post;
+        }
 
-            
-            
-            
+        public void UpdatePost(Post post)
+        {
+            _unitOfWork.GetRepository<Post>().Update(post);
+            _unitOfWork.SaveChanges();
         }
     }
 }
+
+      

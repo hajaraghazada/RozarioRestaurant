@@ -1,30 +1,27 @@
 ﻿using Business.Abstract;
 using Core.DataRepositories.Abstract;
 using DataAccess.Abstract;
-using DataAccess.Concrete.EF;
 using Entities.Concrete;
 using Entities.DataTransferObjects;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 namespace Business.Concrete
 {
     public class MenuItemManager : IMenuItemService
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public MenuItemManager(IUnitOfWork unitofWork )
+        public MenuItemManager(IUnitOfWork unitofWork)
         {
-            this._unitOfWork=unitofWork;
+            _unitOfWork = unitofWork;
         }
 
         public List<MenuItemDto> GetMenuItems()
         {
             IBaseRepository<MenuItem> menuRepository = _unitOfWork.GetRepository<MenuItem>();
             return menuRepository.GetAll().Select(p => new MenuItemDto
-            { 
+            {
                 ID = p.ID,
                 Name = p.Name,
                 Description = p.Description,
@@ -33,7 +30,7 @@ namespace Business.Concrete
             }).ToList();
         }
 
-        public MenuItemDto GetMenuItemById(int id)  
+        public MenuItemDto GetMenuItemById(int id)
         {
             var menuItem = _unitOfWork.GetRepository<MenuItem>().GetById(id);
             if (menuItem != null)
@@ -49,6 +46,31 @@ namespace Business.Concrete
             }
 
             return null;
+        }
+
+        public void AddMenuItem(MenuItem menuItem)
+        {
+            var menuRepository = _unitOfWork.GetRepository<MenuItem>();
+            menuRepository.Add(menuItem);
+            _unitOfWork.SaveChanges(); 
+        }
+
+        public void DeleteMenuItem(int id)
+        {
+            var menuRepository = _unitOfWork.GetRepository<MenuItem>();
+            var menuItem = menuRepository.GetById(id);
+            if (menuItem != null)
+            {
+                menuRepository.Delete(menuItem);
+                _unitOfWork.SaveChanges(); 
+            }
+        }
+
+        public void UpdateMenuItem(MenuItem menuItem)
+        {
+            var menuRepository = _unitOfWork.GetRepository<MenuItem>();
+            menuRepository.Update(menuItem);
+            _unitOfWork.SaveChanges(); 
         }
     }
 }

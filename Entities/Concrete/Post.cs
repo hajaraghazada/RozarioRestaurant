@@ -14,6 +14,6 @@ namespace Entities.Concrete
         public string ImageURL { get; set; }     
         public int AuthorID { get; set; }
         public string Description { get; set; }
-
+     
     }
 }

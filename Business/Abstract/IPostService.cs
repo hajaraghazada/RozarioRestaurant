@@ -10,7 +10,10 @@ namespace Business.Abstract
 {
     public interface IPostService
     {
+        void AddPost(Post post);
+        void DeletePost(int id);
         List<PostDto> GetAllPost();
         PostDto GetPost(int id);
+        void UpdatePost(Post post);
     }
 }

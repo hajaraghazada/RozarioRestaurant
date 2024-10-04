@@ -10,6 +10,10 @@ namespace Business.Abstract
 {
     public interface IFeedBackService
     {
-       List<FeedBackDto> GetAllBack();
+        void AddFeedBack(FeedBack feedback);
+        void DeleteFeedBack(string feedback);
+        List<FeedBackDto> GetAllBack();
+        string? GetFeedBackById(int id);
+        void UpdateFeedBack(FeedBack feedback);
     }
 }

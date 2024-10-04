@@ -11,5 +11,8 @@ namespace Business.Abstract
     {
         List<MenuItemDto> GetMenuItems();
         MenuItemDto GetMenuItemById(int id);
+        void AddMenuItem(MenuItem menuItem);
+        void DeleteMenuItem(int id);
+        void UpdateMenuItem(MenuItem menuItem);
     }
 }
