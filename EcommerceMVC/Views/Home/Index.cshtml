@@ -1,0 +1,29 @@
+﻿@using Entities.DataTransferObjects
+@model PostDto
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="content-full">
+    <div class="fullscreen-section pv3 bg-cover bg-center-top" data-bg-image="/images/pages/cover1.jpg" style="background-image: url(/images/pages/cover1.jpg);">
+        <div class="pv13"></div>
+        <div class="text-center pv15">
+            <img src="~/images/pages/foody.png" alt="foody" data-width="415px" style="width: 415px;">
+        </div>
+        <div class="text-center">
+            <span class="mouse-wheel"></span>
+        </div>
+
+    </div>
+    
+    @Html.Partial("../Partials/AboutUs.cshtml")
+    @Html.Partial("../Partials/Recipes.cshtml")
+    @Html.Partial("../Partials/AreUHungry.cshtml")
+    @Html.Partial("../Partials/Menu.cshtml")
+    @Html.Partial("../Partials/BookTable.cshtml")
+    @Html.Partial("../Partials/Chefs.cshtml")
+    @Html.Partial("../Partials/Team.cshtml")
+    @Html.Partial("../Partials/Testimotional.cshtml")
+
+</div>

@@ -1,0 +1,34 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_Layout";
+}
+<section class="page-title" data-bg-image="/Images/pages/cover-blog.jpg" style="background-image: url(/Images/pages/cover-blog.jpg);">
+    <div class="overlay" data-bg-color="#101010" style="background-color: rgb(16, 16, 16);"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Blog Updates</h1>
+                <ol class="breadcrumb">
+                    <li><a href="./">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li>Style One</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+
+
+
+
+<section class="section-content">
+
+    @Html.Partial("../Partials/BlogUpdates.cshtml")
+
+
+</section>
